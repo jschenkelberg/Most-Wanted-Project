@@ -3,7 +3,7 @@
 function searchByDob() {
     let dobInput = document.forms['nameForm']['dob'].value;
     let filteredPeople = people.filter(function(person) {
-        if (person.firstName === firstNameInput && person.lastName === lastNameInput) {
+        if (person.dob === dobInput) {
             return true;
         }
         return false;
@@ -61,7 +61,9 @@ function searchByName() {
 }
 
 
+function masterSearch() {
 
+}
 
 
 
