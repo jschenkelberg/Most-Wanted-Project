@@ -22,9 +22,9 @@ function searchByDob() {
 function searchByEyeColor() {
     let eyeColorInput = document.forms['nameForm']['eyeColor'].value;
     if (eyeColorInput != "") {
-        filteredPeople = serachByEyeColor(eyeColorInput, filteredPeople)
+        filteredPeople = searchByEyeColor(eyeColorInput, filteredPeople)
         let filteredPeople = people.filter(function(person) {
-            if (person.firstName === firstNameInput && person.lastName === lastNameInput) {
+            if (person.eyeColor == eyeColorInput) {
                 return true;
             }
             return false;
