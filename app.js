@@ -22,7 +22,6 @@ function searchByDob() {
 function searchByEyeColor() {
     let eyeColorInput = document.forms['nameForm']['eyeColor'].value;
     if (eyeColorInput != "") {
-        filteredPeople = searchByEyeColor(eyeColorInput, filteredPeople)
         let filteredPeople = people.filter(function(person) {
             if (person.eyeColor == eyeColorInput) {
                 return true;
@@ -61,18 +60,11 @@ function searchByName() {
 }
 
 
-function masterSearch() {
-
-}
+// function masterSearch() {
 
 
 
-
-
-
-
-
-// function serachByEyeColor(eyeColor, people) {
+// function searchByEyeColor(eyeColor, people) {
 //     let filteredPeople = people.filter(function(el) {
 //         if (el.eyeColor == eyeColor) {
 //             return true;
@@ -83,11 +75,14 @@ function masterSearch() {
 //     return filteredPeople;
 // }
 
-// function searchByName() {
-//     filteredPeople = people.filter(function(person) {
-//         if (person.firstName === firstNameInput && person.lastName === lastNameInput) {
-//             return true;
-//         }
-//         return false;
-//     });
-// }
+
+
+function searchByName(firstName,lastName,people) {
+    filteredPeople = people.filter(function(person) {
+        if (person.firstName === firstNameInput && person.lastName === lastNameInput) {
+            return true;
+        }
+        return false;
+    })
+    return filteredPeople;    
+}
