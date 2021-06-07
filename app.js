@@ -1,7 +1,81 @@
 'use strict';
 
-function searchByDob() {
+function searchByHeight() {
+    let heightInput = document.forms['nameForm']['height'].value;
+    if (heightInput != "") {
+        let filteredPeople = people.filter(function(person) {
+            if (person.height == heightInput) {
+                return true;
+            }
+            return false;
+        });
+        // Rather than console logging, you need to append the filteredPeople to a table.
+
+        if (filteredPeople.length > 0) {
+            return filteredPeople;
+
+        } else {
+            alert('Sorry, No Match!!');
+        }
+    }
+
+}
+
+
+function searchByName(dataSet) {
+    // let filteredPeople = people;
+    // Grabbing the values from our nameForm form and inputs.
+    let firstNameInput = document.forms['nameForm']['fname'].value;
+    let lastNameInput = document.forms['nameForm']['lname'].value;
+
+    if (firstNameInput == '' && lastNameInput == '') {
+        return dataSet;
+    }
+    // "people" is coming from the data.js file. We have access to it within this JavaScript file.
+
+    let filteredPeople = dataSet.filter(function(person) {
+        if (people.firstName === firstNameInput || people.lastName === lastNameInput) {
+            return true;
+        }
+        return false;
+    });
+    // Rather than console logging, you need to append the filteredPeople to a table.
+    if (filteredPeople.length > 0) {
+        return filteredPeople;
+    } else {
+        alert('Sorry, No Match!!');
+    }
+}
+
+function searchByGender(dataSet) {
+    // let filteredPeople = people;
+    // Grabbing the values from our nameForm form and inputs.
+    let genderInput = document.forms['nameForm']['gender'].value;
+    if (genderInput == '') {
+        return dataSet;
+    }
+    // "people" is coming from the data.js file. We have access to it within this JavaScript file.
+
+    let filteredPeople = dataSet.filter(function(person) {
+        if (person.gender === genderInput) {
+            return true;
+        }
+        return false;
+    });
+    // Rather than console logging, you need to append the filteredPeople to a table.
+    if (filteredPeople.length > 0) {
+        return filteredPeople;
+    } else {
+        alert('Sorry, Sorry, No Match!!');
+    }
+}
+
+
+function searchByDob(dataSet) {
     let dobInput = document.forms['nameForm']['dob'].value;
+    if (dobInput !== '') {
+        return dataSet;
+    }
     let filteredPeople = people.filter(function(person) {
         if (person.dob === dobInput) {
             return true;
@@ -10,11 +84,12 @@ function searchByDob() {
     });
     // Rather than console logging, you need to append the filteredPeople to a table.
     if (filteredPeople.length > 0) {
-        console.log(filteredPeople);
+        return filteredPeople;
     } else {
-        console.log('Sorry, looks like there is no one with that name.');
+        alert('Sorry, Sorry, No Match!!');
     }
 }
+
 function searchByEyeColor(dataSet) {
     let eyeColorInput = document.forms['nameForm']['eyeColor'].value;
     if (eyeColorInput != "") {
@@ -29,46 +104,23 @@ function searchByEyeColor(dataSet) {
             console.log(filteredPeople);
             return filteredPeople;
         } else {
-            console.log('Sorry, looks like there is no one with that name.');
+            alert('Sorry, Sorry, No Match!!');
         }
     }
 }
-function searchByName(dataSet) {
-    // let filteredPeople = people;
-    // Grabbing the values from our nameForm form and inputs.
-    let firstNameInput = document.forms['nameForm']['fname'].value;
-    let lastNameInput = document.forms['nameForm']['lname'].value;
 
-    if(firstNameInput == '' && lastNameInput == ''){
-        return dataSet;
-    }
-    // "people" is coming from the data.js file. We have access to it within this JavaScript file.
-
-    let filteredPeople = dataSet.filter(function(person) {
-        if (person.firstName === firstNameInput || person.lastName === lastNameInput)
-         {
-            return true;
-        }
-        return false;
-    });
-    // Rather than console logging, you need to append the filteredPeople to a table.
-    if (filteredPeople.length > 0) {
-        return filteredPeople;
-    } else {
-        alert('Sorry, looks like there is no one with that name.');
-    }
-}
-
-function filterByForm(){
+function filterByForm() {
     let filteredPeopleResult = searchByName(people);
     filteredPeopleResult = searchByEyeColor(filteredPeopleResult);
+    filteredPeopleResult = searchByGender(filteredPeopleResult);
+
 
     buildTable(filteredPeopleResult);
 }
 
-function buildTable(filteredPeople){
-    filteredPeople.map(function(el){
-    document.getElementById("table").innerHTML += `<table>
+function buildTable(filteredPeople) {
+    filteredPeople.map(function(el) {
+        document.getElementById("table").innerHTML += `<table>
             <thead>
               <th>ID</th>
               <th>First Name</th>
@@ -96,7 +148,7 @@ function buildTable(filteredPeople){
             <td>${el.currentSpouse}</td><br>
             </tr>
             </table>`
-    })   
+    })
 }
 
 //     people.map(function(el){
