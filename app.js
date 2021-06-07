@@ -1,27 +1,4 @@
 'use strict';
-
-function searchByHeight() {
-    let heightInput = document.forms['nameForm']['height'].value;
-    if (heightInput != "") {
-        let filteredPeople = people.filter(function(person) {
-            if (person.height == heightInput) {
-                return true;
-            }
-            return false;
-        });
-        // Rather than console logging, you need to append the filteredPeople to a table.
-
-        if (filteredPeople.length > 0) {
-            return filteredPeople;
-
-        } else {
-            alert('Sorry, No Match!!');
-        }
-    }
-
-}
-
-
 function searchByName(dataSet) {
     // let filteredPeople = people;
     // Grabbing the values from our nameForm form and inputs.
@@ -46,7 +23,6 @@ function searchByName(dataSet) {
         alert('Sorry, No Match!!');
     }
 }
-
 function searchByGender(dataSet) {
     // let filteredPeople = people;
     // Grabbing the values from our nameForm form and inputs.
@@ -66,33 +42,74 @@ function searchByGender(dataSet) {
     if (filteredPeople.length > 0) {
         return filteredPeople;
     } else {
-        alert('Sorry, Sorry, No Match!!');
+        alert('Sorry, No Match!!');
     }
 }
-
-
 function searchByDob(dataSet) {
-    let dobInput = document.forms['nameForm']['dob'].value;
-    if (dobInput !== '') {
+        let dobInput = document.forms['nameForm']['dob'].value;
+        if (dobInput == '') {
+            return dataSet;
+        }
+        let filteredPeople = people.filter(function(person) {
+            if (person.dob === dobInput) {
+                return true;
+            }
+            return false;
+        });
+        // Rather than console logging, you need to append the filteredPeople to a table.
+        if (filteredPeople.length > 0) {
+            return filteredPeople;
+        } else {
+            alert('Sorry, No Match!!');
+        }
+    }
+function searchByHeight() {
+    let heightInput = document.forms['nameForm']['height'].value;
+    if (heightInput == '') {
         return dataSet;
     }
-    let filteredPeople = people.filter(function(person) {
-        if (person.dob === dobInput) {
-            return true;
-        }
-        return false;
-    });
-    // Rather than console logging, you need to append the filteredPeople to a table.
-    if (filteredPeople.length > 0) {
-        return filteredPeople;
-    } else {
-        alert('Sorry, Sorry, No Match!!');
-    }
-}
+        let filteredPeople = people.filter(function(person) {
+            if (person.height == heightInput) {
+                return true;
+            }
+            return false;
+        });
+        // Rather than console logging, you need to append the filteredPeople to a table.
 
+        if (filteredPeople.length > 0) {
+            return filteredPeople;
+            
+        } else {
+            alert('Sorry, No Match!!');
+        }
+    }
+   
+function searchByWeight() {
+    let weightInput = document.forms['nameForm']['weight'].value;
+    if (weightInput == '') {
+        return dataSet;
+    }
+        let filteredPeople = people.filter(function(person) {
+            if (person.weight == weightInput) {
+                return true;
+            }
+            return false;
+        });
+        // Rather than console logging, you need to append the filteredPeople to a table.
+
+        if (filteredPeople.length > 0) {
+            return filteredPeople;
+            
+        } else {
+            alert('Sorry, No Match!!');
+        }
+    }
+    
 function searchByEyeColor(dataSet) {
     let eyeColorInput = document.forms['nameForm']['eyeColor'].value;
-    if (eyeColorInput != "") {
+    if (eyeColorInput == '') {
+        return dataSet;
+    }
         let filteredPeople = dataSet.filter(function(person) {
             if (person.eyeColor == eyeColorInput) {
                 return true;
@@ -104,20 +121,92 @@ function searchByEyeColor(dataSet) {
             console.log(filteredPeople);
             return filteredPeople;
         } else {
-            alert('Sorry, Sorry, No Match!!');
+            alert('Sorry, No Match!!');
         }
     }
-}
+
+function searchByOccupation() {
+    let occupationInput = document.forms['nameForm']['occupation'].value;
+    if (occupationInput == '') {
+        return dataSet;
+    }
+        let filteredPeople = people.filter(function(person) {
+            if (person.occupation == occupationInput) {
+                return true;
+            }
+            return false;
+        });
+        // Rather than console logging, you need to append the filteredPeople to a table.
+
+        if (filteredPeople.length > 0) {
+            return filteredPeople;
+            
+        } else {
+            alert('Sorry, No Match!!');
+        }
+    }
+
+function searchByParents() {
+    let parentsInput = document.forms['nameForm']['parents'].value;
+    if (parentsInput == '') {
+        return dataSet;
+    }
+        let filteredPeople = people.filter(function(person) {
+            if (person.parents == parentsInput) {
+                return true;
+            }
+            return false;
+        });
+        // Rather than console logging, you need to append the filteredPeople to a table.
+
+        if (filteredPeople.length > 0) {
+            return filteredPeople;
+            
+        } else {
+            alert('Sorry, No Match!!');
+        }
+    }
+
+function searchByCurrentSpouse() {
+    let currentSpouseInput = document.forms['nameForm']['currentSpouse'].value;
+    if (dobInput == '') {
+        return dataSet;
+    }
+        let filteredPeople = people.filter(function(person) {
+            if (person.currentSpouse == currentSpouseInput) {
+                return true;
+            }
+            return false;
+        });
+        // Rather than console logging, you need to append the filteredPeople to a table.
+
+        if (filteredPeople.length > 0) {
+            return filteredPeople;
+            
+        } else {
+            alert('Sorry, No Match!!');
+        }
+    }
+   
 
 function filterByForm() {
     let filteredPeopleResult = searchByName(people);
-    filteredPeopleResult = searchByEyeColor(filteredPeopleResult);
     filteredPeopleResult = searchByGender(filteredPeopleResult);
+    filteredPeopleResult = searchByDob(filteredPeopleResult);
+    filteredPeopleResult = searchByHeight(filteredPeopleResult);
+    filteredPeopleResult = searchByWeight(filteredPeopleResult);
+    filteredPeopleResult = searchByEyeColor(filteredPeopleResult);
+    filteredPeopleResult = searchByOccupation(filteredPeopleResult);
+    filteredPeopleResult = searchByParents(filteredPeopleResult);
+    filteredPeopleResult = searchByCurrentSpouse(filteredPeopleResult);
+    if (filteredPeople.length > 0) {
+        return filteredPeople;
 
-
+    } 
+    else {
     buildTable(filteredPeopleResult);
+    }
 }
-
 function buildTable(filteredPeople) {
     filteredPeople.map(function(el) {
         document.getElementById("table").innerHTML += `<table>
@@ -195,4 +284,4 @@ function buildTable(filteredPeople) {
 //         return false;
 //     })
 //     return filteredPeople;    
-// }
+// 
