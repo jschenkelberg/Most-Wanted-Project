@@ -1,6 +1,6 @@
 'use strict';
 function searchByName(dataSet) {
-    // let filteredPeople = people;
+    //let filteredPeople = people;
     // Grabbing the values from our nameForm form and inputs.
     let firstNameInput = document.forms['nameForm']['fname'].value;
     let lastNameInput = document.forms['nameForm']['lname'].value;
@@ -10,8 +10,8 @@ function searchByName(dataSet) {
     }
     // "people" is coming from the data.js file. We have access to it within this JavaScript file.
 
-    let filteredPeople = dataSet.filter(function(person) {
-        if (people.firstName === firstNameInput || people.lastName === lastNameInput) {
+    let filteredPeople = people.filter(function(person) {
+        if (person.firstName == firstNameInput || person.lastName == lastNameInput) {
             return true;
         }
         return false;
@@ -63,7 +63,7 @@ function searchByDob(dataSet) {
             alert('Sorry, No Match!!');
         }
     }
-function searchByHeight() {
+function searchByHeight(dataSet) {
     let heightInput = document.forms['nameForm']['height'].value;
     if (heightInput == '') {
         return dataSet;
@@ -84,7 +84,7 @@ function searchByHeight() {
         }
     }
    
-function searchByWeight() {
+function searchByWeight(dataSet) {
     let weightInput = document.forms['nameForm']['weight'].value;
     if (weightInput == '') {
         return dataSet;
@@ -125,7 +125,7 @@ function searchByEyeColor(dataSet) {
         }
     }
 
-function searchByOccupation() {
+function searchByOccupation(dataSet) {
     let occupationInput = document.forms['nameForm']['occupation'].value;
     if (occupationInput == '') {
         return dataSet;
@@ -146,7 +146,7 @@ function searchByOccupation() {
         }
     }
 
-function searchByParents() {
+function searchByParents(dataSet) {
     let parentsInput = document.forms['nameForm']['parents'].value;
     if (parentsInput == '') {
         return dataSet;
@@ -167,9 +167,9 @@ function searchByParents() {
         }
     }
 
-function searchByCurrentSpouse() {
+function searchByCurrentSpouse(dataSet) {
     let currentSpouseInput = document.forms['nameForm']['currentSpouse'].value;
-    if (dobInput == '') {
+    if (currentSpouseInput == '') {
         return dataSet;
     }
         let filteredPeople = people.filter(function(person) {
@@ -199,14 +199,9 @@ function filterByForm() {
     filteredPeopleResult = searchByOccupation(filteredPeopleResult);
     filteredPeopleResult = searchByParents(filteredPeopleResult);
     filteredPeopleResult = searchByCurrentSpouse(filteredPeopleResult);
-    if (filteredPeople.length > 0) {
-        return filteredPeople;
-
-    } 
-    else {
     buildTable(filteredPeopleResult);
     }
-}
+
 function buildTable(filteredPeople) {
     filteredPeople.map(function(el) {
         document.getElementById("table").innerHTML += `<table>
