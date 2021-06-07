@@ -1,17 +1,16 @@
 'use strict';
-function searchByName(dataSet) {
+function searchByFirstName(dataSet) {
     //let filteredPeople = people;
     // Grabbing the values from our nameForm form and inputs.
     let firstNameInput = document.forms['nameForm']['fname'].value;
-    let lastNameInput = document.forms['nameForm']['lname'].value;
 
-    if (firstNameInput == '' && lastNameInput == '') {
+    if (firstNameInput == '' ) {
         return dataSet;
     }
     // "people" is coming from the data.js file. We have access to it within this JavaScript file.
 
     let filteredPeople = people.filter(function(person) {
-        if (person.firstName == firstNameInput || person.lastName == lastNameInput) {
+        if (person.firstName == firstNameInput) {
             return true;
         }
         return false;
@@ -23,6 +22,30 @@ function searchByName(dataSet) {
         alert('Sorry, No Match!!');
     }
 }
+function searchByLastName(dataSet) {
+    //let filteredPeople = people;
+    // Grabbing the values from our nameForm form and inputs.
+    let lastNameInput = document.forms['nameForm']['lname'].value;
+
+    if (lastNameInput == '') {
+        return dataSet;
+    }
+    // "people" is coming from the data.js file. We have access to it within this JavaScript file.
+
+    let filteredPeople = dataSet.filter(function(person) {
+        if (person.lastName == lastNameInput) {
+            return true;
+        }
+        return false;
+    });
+    // Rather than console logging, you need to append the filteredPeople to a table.
+    if (filteredPeople.length > 0) {
+        return filteredPeople;
+    } else {
+        alert('Sorry, No Match!!');
+    }
+}
+
 function searchByGender(dataSet) {
     // let filteredPeople = people;
     // Grabbing the values from our nameForm form and inputs.
@@ -83,7 +106,6 @@ function searchByHeight(dataSet) {
             alert('Sorry, No Match!!');
         }
     }
-   
 function searchByWeight(dataSet) {
     let weightInput = document.forms['nameForm']['weight'].value;
     if (weightInput == '') {
@@ -104,7 +126,6 @@ function searchByWeight(dataSet) {
             alert('Sorry, No Match!!');
         }
     }
-    
 function searchByEyeColor(dataSet) {
     let eyeColorInput = document.forms['nameForm']['eyeColor'].value;
     if (eyeColorInput == '') {
@@ -124,7 +145,6 @@ function searchByEyeColor(dataSet) {
             alert('Sorry, No Match!!');
         }
     }
-
 function searchByOccupation(dataSet) {
     let occupationInput = document.forms['nameForm']['occupation'].value;
     if (occupationInput == '') {
@@ -145,7 +165,6 @@ function searchByOccupation(dataSet) {
             alert('Sorry, No Match!!');
         }
     }
-
 function searchByParents(dataSet) {
     let parentsInput = document.forms['nameForm']['parents'].value;
     if (parentsInput == '') {
@@ -166,7 +185,6 @@ function searchByParents(dataSet) {
             alert('Sorry, No Match!!');
         }
     }
-
 function searchByCurrentSpouse(dataSet) {
     let currentSpouseInput = document.forms['nameForm']['currentSpouse'].value;
     if (currentSpouseInput == '') {
@@ -187,10 +205,15 @@ function searchByCurrentSpouse(dataSet) {
             alert('Sorry, No Match!!');
         }
     }
-   
+// function filterDescendents(){
+//     let parents = document
+//     if (person.id === person.parents);
+//         return true
+// }   
 
 function filterByForm() {
-    let filteredPeopleResult = searchByName(people);
+    let filteredPeopleResult = searchByFirstName(people);
+    filteredPeopleResult = searchByLastName (filteredPeopleResult);
     filteredPeopleResult = searchByGender(filteredPeopleResult);
     filteredPeopleResult = searchByDob(filteredPeopleResult);
     filteredPeopleResult = searchByHeight(filteredPeopleResult);
@@ -199,6 +222,7 @@ function filterByForm() {
     filteredPeopleResult = searchByOccupation(filteredPeopleResult);
     filteredPeopleResult = searchByParents(filteredPeopleResult);
     filteredPeopleResult = searchByCurrentSpouse(filteredPeopleResult);
+    //filteredPeopleResult = filterDescendents(filteredPeopleResult);
     buildTable(filteredPeopleResult);
     }
 
@@ -231,6 +255,8 @@ function buildTable(filteredPeople) {
             <td>${el.parents}</td>
             <td>${el.currentSpouse}</td><br>
             </tr>
+                <input type="checkbox" id="descendents" name="descendents" value="descendents"><br>
+                <label for="descendents"> Show descendents</label><br>
             </table>`
     })
 }
