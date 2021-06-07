@@ -15,10 +15,10 @@ function searchByDob() {
         console.log('Sorry, looks like there is no one with that name.');
     }
 }
-function searchByEyeColor() {
+function searchByEyeColor(dataSet) {
     let eyeColorInput = document.forms['nameForm']['eyeColor'].value;
     if (eyeColorInput != "") {
-        let filteredPeople = people.filter(function(person) {
+        let filteredPeople = dataSet.filter(function(person) {
             if (person.eyeColor == eyeColorInput) {
                 return true;
             }
@@ -27,20 +27,25 @@ function searchByEyeColor() {
         // Rather than console logging, you need to append the filteredPeople to a table.
         if (filteredPeople.length > 0) {
             console.log(filteredPeople);
+            return filteredPeople;
         } else {
             console.log('Sorry, looks like there is no one with that name.');
         }
     }
 }
-function searchByName() {
+function searchByName(dataSet) {
     // let filteredPeople = people;
     // Grabbing the values from our nameForm form and inputs.
     let firstNameInput = document.forms['nameForm']['fname'].value;
     let lastNameInput = document.forms['nameForm']['lname'].value;
+
+    if(firstNameInput == '' && lastNameInput == ''){
+        return dataSet;
+    }
     // "people" is coming from the data.js file. We have access to it within this JavaScript file.
 
-    let filteredPeople = people.filter(function(person) {
-        if (person.firstName === firstNameInput && person.lastName === lastNameInput)
+    let filteredPeople = dataSet.filter(function(person) {
+        if (person.firstName === firstNameInput || person.lastName === lastNameInput)
          {
             return true;
         }
@@ -48,21 +53,22 @@ function searchByName() {
     });
     // Rather than console logging, you need to append the filteredPeople to a table.
     if (filteredPeople.length > 0) {
-        buildTable();
+        return filteredPeople;
     } else {
         alert('Sorry, looks like there is no one with that name.');
     }
 }
-function buildTable(){
-    let firstNameInput = document.forms['nameForm']['fname'].value;
-    let lastNameInput = document.forms['nameForm']['lname'].value;
-    let genderInput = document.forms ['nameForm']['gender'].value;
-    let dobInput = document.forms ['nameForm']['dob'].value;
-    let eyeColorInput = document.forms ['nameForm']['eyeColor'].value;
-    people.map(function(el){
-       if(el.firstName === firstNameInput || el.lastName === lastNameInput || el.dob === dobInput || el.gender === genderInput || el.eyeColor === eyeColorInput)
-        {
-            document.getElementById("table").innerHTML += `<table>
+
+function filterByForm(){
+    let filteredPeopleResult = searchByName(people);
+    filteredPeopleResult = searchByEyeColor(filteredPeopleResult);
+
+    buildTable(filteredPeopleResult);
+}
+
+function buildTable(filteredPeople){
+    filteredPeople.map(function(el){
+    document.getElementById("table").innerHTML += `<table>
             <thead>
               <th>ID</th>
               <th>First Name</th>
@@ -90,7 +96,6 @@ function buildTable(){
             <td>${el.currentSpouse}</td><br>
             </tr>
             </table>`
-        }
     })   
 }
 
@@ -113,7 +118,7 @@ function buildTable(){
 // }
 
 
-// function masterSearch() {
+
 
 
 
