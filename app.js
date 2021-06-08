@@ -231,16 +231,16 @@ function filterByForm() {
     filteredPeopleResult = searchByOccupation(filteredPeopleResult);
     filteredPeopleResult = searchByParents(filteredPeopleResult);
     filteredPeopleResult = searchByCurrentSpouse(filteredPeopleResult);
+    filteredPeopleResult = findDescendants(filteredPeopleResult);
     buildTable(filteredPeopleResult);
-    let results = findDescendants(filteredPeopleResult);
-    console.log(results)
+    //console.log(results)
     {
         return filteredPeopleResult;
     }
 }
 
-let result = "hello world".toLowerCase() === "HeLLo wOrlD".toLowerCase();
-console.log(result)
+// let result = "hello world".toLowerCase() === "HeLLo wOrlD".toLowerCase();
+// console.log(result)
 
 function buildTable(filteredPeople) {
     filteredPeople.map(function(el) {
@@ -257,6 +257,12 @@ function buildTable(filteredPeople) {
             <td>${el.occupation}</td>
             <td>${el.parents}</td>
             <td>${el.currentSpouse}</td>
+            </tr>
+            <th>Descendents</th>
+            <tr>
+            <td>${el.descendants}</td>
+            <td>${el.descendants}</td>
+            <br>
             </tr>`
     })
 }
