@@ -204,6 +204,22 @@ function searchByCurrentSpouse(dataSet) {
             alert('Sorry, No Match!!');
         }
 }
+function findDescendants(dataSet){
+   for(let i = 0; i <dataSet.length;i++){
+       dataSet[i].descendants = findIndvidualDescendants(dataSet[i])
+   }
+   return dataSet;
+}
+function findIndvidualDescendants(person, descendants = []){
+
+    people.map(function(el){
+        if(el.parents[0] == person.id || el.parents[1] == person.id){
+          descendants.push(el)
+          return findIndvidualDescendants(el, descendants)
+        }
+    })
+    return descendants
+}
 function filterByForm() {
     let filteredPeopleResult = searchByFirstName(people);
     filteredPeopleResult = searchByLastName (filteredPeopleResult);
@@ -216,37 +232,19 @@ function filterByForm() {
     filteredPeopleResult = searchByParents(filteredPeopleResult);
     filteredPeopleResult = searchByCurrentSpouse(filteredPeopleResult);
     buildTable(filteredPeopleResult);
-    findDescendants(filteredPeopleResult);{
+    let results = findDescendants(filteredPeopleResult);
+    console.log(results)
+    {
         return filteredPeopleResult;
     }
-} 
-function findDescendants(){
-    let filteredPeopleResult=people.filter(function(filteredPeopleResult){
-        if (filteredPeopleResult.id === people.parents) {     
-        buildTable(descendants);
-        }
-         
-    });
-    }
+}
 
-
+let result = "hello world".toLowerCase() === "HeLLo wOrlD".toLowerCase();
+console.log(result)
 
 function buildTable(filteredPeople) {
     filteredPeople.map(function(el) {
-        document.getElementById("table").innerHTML += `<table>
-            <thead>
-              <th>ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Gender</th>
-              <th>D.O.B.</th>
-              <th>Height</th>
-              <th>Weight</th>
-              <th>Eye Color</th>
-              <th>Occupation</th>
-              <th>Parents</th>
-              <th>Current Spouse</th>
-            </thead>
+        document.getElementById("data").innerHTML += `
             <tr>
             <td id=${el.id} style="color:red">${el.id}</td>
             <td>${el.firstName}</td>
@@ -258,9 +256,8 @@ function buildTable(filteredPeople) {
             <td>${el.eyeColor}</td>
             <td>${el.occupation}</td>
             <td>${el.parents}</td>
-            <td>${el.currentSpouse}</td><br>
-            </tr>
-            </table>`
+            <td>${el.currentSpouse}</td>
+            </tr>`
     })
 }
 // function fullTable() {
