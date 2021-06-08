@@ -45,7 +45,6 @@ function searchByLastName(dataSet) {
         alert('Sorry, No Match!!');
     }
 }
-
 function searchByGender(dataSet) {
     // let filteredPeople = people;
     // Grabbing the values from our nameForm form and inputs.
@@ -85,7 +84,7 @@ function searchByDob(dataSet) {
         } else {
             alert('Sorry, No Match!!');
         }
-    }
+}
 function searchByHeight(dataSet) {
     let heightInput = document.forms['nameForm']['height'].value;
     if (heightInput == '') {
@@ -105,7 +104,7 @@ function searchByHeight(dataSet) {
         } else {
             alert('Sorry, No Match!!');
         }
-    }
+}
 function searchByWeight(dataSet) {
     let weightInput = document.forms['nameForm']['weight'].value;
     if (weightInput == '') {
@@ -125,7 +124,7 @@ function searchByWeight(dataSet) {
         } else {
             alert('Sorry, No Match!!');
         }
-    }
+}
 function searchByEyeColor(dataSet) {
     let eyeColorInput = document.forms['nameForm']['eyeColor'].value;
     if (eyeColorInput == '') {
@@ -144,13 +143,13 @@ function searchByEyeColor(dataSet) {
         } else {
             alert('Sorry, No Match!!');
         }
-    }
+}
 function searchByOccupation(dataSet) {
     let occupationInput = document.forms['nameForm']['occupation'].value;
     if (occupationInput == '') {
         return dataSet;
     }
-        let filteredPeople = people.filter(function(person) {
+        let filteredPeople = dataSet.filter(function(person) {
             if (person.occupation == occupationInput) {
                 return true;
             }
@@ -164,13 +163,13 @@ function searchByOccupation(dataSet) {
         } else {
             alert('Sorry, No Match!!');
         }
-    }
+}
 function searchByParents(dataSet) {
     let parentsInput = document.forms['nameForm']['parents'].value;
     if (parentsInput == '') {
         return dataSet;
     }
-        let filteredPeople = people.filter(function(person) {
+        let filteredPeople = dataSet.filter(function(person) {
             if (person.parents == parentsInput) {
                 return true;
             }
@@ -184,13 +183,13 @@ function searchByParents(dataSet) {
         } else {
             alert('Sorry, No Match!!');
         }
-    }
+}
 function searchByCurrentSpouse(dataSet) {
     let currentSpouseInput = document.forms['nameForm']['currentSpouse'].value;
     if (currentSpouseInput == '') {
         return dataSet;
     }
-        let filteredPeople = people.filter(function(person) {
+        let filteredPeople = dataSet.filter(function(person) {
             if (person.currentSpouse == currentSpouseInput) {
                 return true;
             }
@@ -204,13 +203,7 @@ function searchByCurrentSpouse(dataSet) {
         } else {
             alert('Sorry, No Match!!');
         }
-    }
-// function filterDescendents(){
-//     let parents = document
-//     if (person.id === person.parents);
-//         return true
-// }   
-
+}
 function filterByForm() {
     let filteredPeopleResult = searchByFirstName(people);
     filteredPeopleResult = searchByLastName (filteredPeopleResult);
@@ -222,9 +215,21 @@ function filterByForm() {
     filteredPeopleResult = searchByOccupation(filteredPeopleResult);
     filteredPeopleResult = searchByParents(filteredPeopleResult);
     filteredPeopleResult = searchByCurrentSpouse(filteredPeopleResult);
-    //filteredPeopleResult = filterDescendents(filteredPeopleResult);
     buildTable(filteredPeopleResult);
+    findDescendants(filteredPeopleResult);{
+        return filteredPeopleResult;
     }
+} 
+function findDescendants(){
+    let filteredPeopleResult=people.filter(function(filteredPeopleResult){
+        if (filteredPeopleResult.id === people.parents) {     
+        buildTable(descendants);
+        }
+         
+    });
+    }
+
+
 
 function buildTable(filteredPeople) {
     filteredPeople.map(function(el) {
@@ -255,29 +260,109 @@ function buildTable(filteredPeople) {
             <td>${el.parents}</td>
             <td>${el.currentSpouse}</td><br>
             </tr>
-                <input type="checkbox" id="descendents" name="descendents" value="descendents"><br>
-                <label for="descendents"> Show descendents</label><br>
             </table>`
     })
 }
-
-//     people.map(function(el){
-//     document.getElementById("people").innerHTML += `<tr>
-//     <td id=${el.id} style="color:red">${el.id}</td>
-//     <td>${el.firstName}</td>
-//     <td>${el.lastName}</td>
-//     <td>${el.gender}</td>
-//     <td>${el.dob}</td>
-//     <td>${el.height}</td>
-//     <td>${el.weight}</td>
-//     <td>${el.eyeColor}</td>
-//     <td>${el.occupation}</td>
-//     <td>${el.parents}</td>
-//     <td>${el.currentSpouse}</td>
-//     <td><button onclick="deletePerson()">Delete</button></td>
-//     </tr>`
-// })
+// function fullTable() {
+//     people.map(function(el) {
+//         document.getElementById("fullTable").innerHTML += `<table>
+//             <thead>
+//               <th>ID</th>
+//               <th>First Name</th>
+//               <th>Last Name</th>
+//               <th>Gender</th>
+//               <th>D.O.B.</th>
+//               <th>Height</th>
+//               <th>Weight</th>
+//               <th>Eye Color</th>
+//               <th>Occupation</th>
+//               <th>Parents</th>
+//               <th>Current Spouse</th>
+//             </thead>
+//             <tr>
+//             <td id=${el.id} style="color:red">${el.id}</td>
+//             <td>${el.firstName}</td>
+//             <td>${el.lastName}</td>
+//             <td>${el.gender}</td>
+//             <td>${el.dob}</td>
+//             <td>${el.height}</td>
+//             <td>${el.weight}</td>
+//             <td>${el.eyeColor}</td>
+//             <td>${el.occupation}</td>
+//             <td>${el.parents}</td>
+//             <td>${el.currentSpouse}</td><br>
+//             </tr>
+//             </table>`
+//     })
 // }
+// function filterForDescendents (dataSet){
+   
+//     if (dataSet.id === people.parents)
+
+//     {
+//         document.getElementById("table2").innerHTML += `<table>
+//             <thead>
+//               <th>ID</th>
+//               <th>First Name</th>
+//               <th>Last Name</th>
+//               <th>Gender</th>
+//               <th>D.O.B.</th>
+//               <th>Height</th>
+//               <th>Weight</th>
+//               <th>Eye Color</th>
+//               <th>Occupation</th>
+//               <th>Parents</th>
+//               <th>Current Spouse</th>
+//             </thead>
+//             <tr>
+//             <td id=${el.id} style="color:red">${el.id}</td>
+//             <td>${el.firstName}</td>
+//             <td>${el.lastName}</td>
+//             <td>${el.gender}</td>
+//             <td>${el.dob}</td>
+//             <td>${el.height}</td>
+//             <td>${el.weight}</td>
+//             <td>${el.eyeColor}</td>
+//             <td>${el.occupation}</td>
+//             <td>${el.parents}</td>
+//             <td>${el.currentSpouse}</td><br>
+//             </tr>
+//             </table>`
+
+function fullTable (){ 
+    people.map(function(el){
+    document.getElementById("people").innerHTML += `<table>
+    <thead>
+    <th>ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Gender</th>
+    <th>D.O.B.</th>
+    <th>Height</th>
+    <th>Weight</th>
+    <th>Eye Color</th>
+    <th>Occupation</th>
+    <th>Parents</th>
+    <th>Current Spouse</th>
+  </thead>
+  <tr>
+    <tr>
+    <td id=${el.id} style="color:red">${el.id}</td>
+    <td>${el.firstName}</td>
+    <td>${el.lastName}</td>
+    <td>${el.gender}</td>
+    <td>${el.dob}</td>
+    <td>${el.height}</td>
+    <td>${el.weight}</td>
+    <td>${el.eyeColor}</td>
+    <td>${el.occupation}</td>
+    <td>${el.parents}</td>
+    <td>${el.currentSpouse}</td>
+    <td><button onclick="deletePerson()">Delete</button></td>
+    </tr>
+    </table>`
+})
+}
 
 
 
