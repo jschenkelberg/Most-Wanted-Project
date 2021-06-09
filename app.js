@@ -233,8 +233,6 @@ function findIndvidualDescendants(person, descendants = []) {
     return descendants
 }
 
-
-
 function findParent(dataSet) {
     for (let i = 0; i < dataSet.length; i++) {
         dataSet[i].parents = findIndvidualParents(dataSet[i]);
@@ -254,6 +252,26 @@ function findIndvidualParents(person, parents = []) {
 
 }
 
+function findCurrentSpouse(dataSet) {
+    for (let i = 0; i < dataSet.length; i++) {
+        dataSet[i].currentSpouse = findIndvidualSpouse(dataSet[i]);
+    }
+    return dataSet;
+}
+
+function findIndvidualSpouse(person, currentSpouse = []) {
+
+    people.map(function(el) {
+        if (el.id == person.currentSpouse) {
+            currentSpouse.push(el)
+            return findIndvidualParents(el, currentSpouse);
+        }
+    })
+    return currentSpouse;
+
+}
+
+
 function filterByForm() {
     let filteredPeopleResult = searchByFirstName(people);
     filteredPeopleResult = searchByLastName(filteredPeopleResult);
@@ -263,10 +281,11 @@ function filterByForm() {
     filteredPeopleResult = searchByWeight(filteredPeopleResult);
     filteredPeopleResult = searchByEyeColor(filteredPeopleResult);
     filteredPeopleResult = searchByOccupation(filteredPeopleResult);
-    filteredPeopleResult = searchByParents(filteredPeopleResult);
-    filteredPeopleResult = searchByCurrentSpouse(filteredPeopleResult);
+    // filteredPeopleResult = searchByParents(filteredPeopleResult);
+    // filteredPeopleResult = searchByCurrentSpouse(filteredPeopleResult);
     filteredPeopleResult = findDescendants(filteredPeopleResult);
     filteredPeopleResult = findParent(filteredPeopleResult);
+    filteredPeopleResult = findCurrentSpouse(filteredPeopleResult);
     buildTable(filteredPeopleResult);
     buildDescendantTable(filteredPeopleResult);
     //console.log(results)
@@ -352,7 +371,7 @@ function buildTable(filteredPeople) {
                 <td>${el.eyeColor}</td>
                 <td>${el.occupation}</td>
                 <td>${getParentsFromArray(el.parents)}</td>
-                <td>${el.currentSpouse}</td>
+                <td>${getSpouseNameFromArray(el.currentSpouse)}</td>
                 <td>${getNamesFromArray(el.descendants)}</td>`
 
     });
@@ -373,3 +392,20 @@ function getParentsFromArray(arrayOfPeople) {
     })
     return result;
 }
+
+
+function getSpouseNameFromArray(arrayOfPeople) {
+    let result = ""
+    arrayOfPeople.map(function(el) {
+        result += `${el.firstName} ${el.lastName}\n`
+    })
+    return result;
+}
+
+// function getSiblingsFromArray(arrayOfPeople) {
+//     let result = ""
+//     arrayOfPeople.map(function (el) {
+//         result += `${el.firstName} ${el.lastName}\n`
+//     })
+//     return result;
+// }
