@@ -1,0 +1,23 @@
+table,
+td,
+thead
+{
+    border: 1px solid black;
+    table-layout: auto;
+    width: auto;
+    text-align: center;
+    column-width: 100px
+}
+th
+{
+background-color:lightgray;
+text-align: center;
+font-weight: bold;
+border: 1px solid black
+}
+.descendants{
+background-color: black;
+font-weight: bolder;
+color:white;
+font-size: 2rem;
+}

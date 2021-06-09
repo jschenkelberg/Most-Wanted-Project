@@ -233,12 +233,30 @@ function filterByForm() {
     filteredPeopleResult = searchByCurrentSpouse(filteredPeopleResult);
     filteredPeopleResult = findDescendants(filteredPeopleResult);
     buildTable(filteredPeopleResult);
+    //buildDescendantTable(filteredPeopleResult);
     //console.log(results)
     {
         return filteredPeopleResult;
     }
 }
-
+function buildDescendantTable (dataSet){
+    dataSet.map(function(el){
+        document.getElementById("data").innerHTML +=
+            `<tr>
+                <td>${el.descendants[0].firstName}</td>
+                <td>${el.descendants[0].lastName}</td>
+                <td>${el.descendants[1].firstName}</td>
+                <td>${el.descendants[1].lastName}</td>
+                <td>${el.descendants[2].firstName}</td>
+                <td>${el.descendants[2].lastName}</td>
+                <td>${el.descendants[3].firstName}</td>
+                <td>${el.descendants[3].lastName}</td>
+                <td>${el.descendants[4].firstName}</td>
+                <td>${el.descendants[4].lastName}</td>
+            </tr>`
+    })
+}
+    
 // let result = "hello world".toLowerCase() === "HeLLo wOrlD".toLowerCase();
 // console.log(result)
 
@@ -246,26 +264,41 @@ function buildTable(filteredPeople) {
     filteredPeople.map(function(el) {
         document.getElementById("data").innerHTML += `
             <tr>
-            <td id=${el.id} style="color:red">${el.id}</td>
-            <td>${el.firstName}</td>
-            <td>${el.lastName}</td>
-            <td>${el.gender}</td>
-            <td>${el.dob}</td>
-            <td>${el.height}</td>
-            <td>${el.weight}</td>
-            <td>${el.eyeColor}</td>
-            <td>${el.occupation}</td>
-            <td>${el.parents}</td>
-            <td>${el.currentSpouse}</td>
+                <td id=${el.id} style="color:red">${el.id}</td>
+                <td>${el.firstName}</td>
+                <td>${el.lastName}</td>
+                <td>${el.gender}</td>
+                <td>${el.dob}</td>
+                <td>${el.height}</td>
+                <td>${el.weight}</td>
+                <td>${el.eyeColor}</td>
+                <td>${el.occupation}</td>
+                <td>${el.parents}</td>
+                <td>${el.currentSpouse}</td>
             </tr>
-            <th>Descendents</th>
+                <th colspan="10" class="descendants">${el.firstName} ${el.lastName}'s Descendants</th>
             <tr>
-            <td>${el.descendants}</td>
-            <td>${el.descendants}</td>
+            <th colspan="2">Descendant 1</th>
+            <th colspan="2">Descendant 2</th>
+            <th colspan="2">Descendant 3</th>
+            <th colspan="2">Descendant 4</th>
+            <th colspan="2">Descendant 5</th>
+            <tr>
+                <td>${el.descendants[0].firstName}</td>
+                <td>${el.descendants[0].lastName}</td>
+                <td>${el.descendants[1].firstName}</td>
+                <td>${el.descendants[1].lastName}</td>
+                <td>${el.descendants[2].firstName}</td>
+                <td>${el.descendants[2].lastName}</td>
+                <td>${el.descendants[3].firstName}</td>
+                <td>${el.descendants[3].lastName}</td>
+                <td>${el.descendants[4].firstName}</td>
+                <td>${el.descendants[4].lastName}</td>
             <br>
             </tr>`
     })
 }
+
 // function fullTable() {
 //     people.map(function(el) {
 //         document.getElementById("fullTable").innerHTML += `<table>
@@ -331,45 +364,6 @@ function buildTable(filteredPeople) {
 //             <td>${el.currentSpouse}</td><br>
 //             </tr>
 //             </table>`
-
-function fullTable (){ 
-    people.map(function(el){
-    document.getElementById("people").innerHTML += `<table>
-    <thead>
-    <th>ID</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Gender</th>
-    <th>D.O.B.</th>
-    <th>Height</th>
-    <th>Weight</th>
-    <th>Eye Color</th>
-    <th>Occupation</th>
-    <th>Parents</th>
-    <th>Current Spouse</th>
-  </thead>
-  <tr>
-    <tr>
-    <td id=${el.id} style="color:red">${el.id}</td>
-    <td>${el.firstName}</td>
-    <td>${el.lastName}</td>
-    <td>${el.gender}</td>
-    <td>${el.dob}</td>
-    <td>${el.height}</td>
-    <td>${el.weight}</td>
-    <td>${el.eyeColor}</td>
-    <td>${el.occupation}</td>
-    <td>${el.parents}</td>
-    <td>${el.currentSpouse}</td>
-    <td><button onclick="deletePerson()">Delete</button></td>
-    </tr>
-    </table>`
-})
-}
-
-
-
-
 
 
 // function searchByEyeColor(eyeColor, people) {

@@ -3,18 +3,9 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>devCodeCamp &middot; Most Wanted</title>
-    <style>
-        table,
-        th,
-        td,
-        thead {
-            border: 1px solid black;
-            table-layout: auto;
-            width: auto;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="most wanted.css">
 </head>
 
 <body>
@@ -56,7 +47,7 @@
         <input type="button" onclick="filterByForm()" value="Search All">
         <input type="reset"><br>
     </form>
-    <input type="button" onclick="fullTable()" value="View All">
+  
 
     <table>
         <thead>
@@ -71,14 +62,12 @@
           <th>Occupation</th>
           <th>Parents</th>
           <th>Current Spouse</th>
-          <th>Descendants</th>
-        </thead>
+          </thead>
         <tbody id= "data">
 
         </tbody>
     </table>
     <div id="table"></div><br>
-    <div id="people"></div><br>
         <!-- <input type="checkbox" onclick="fullTable()" id="fullTable" name="fullTable" value="fullTable">
         <label for="fullTable">Show/Hide All People</label>
         <div id="fullTable"></div><br> -->
