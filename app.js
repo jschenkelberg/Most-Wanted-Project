@@ -271,6 +271,24 @@ function findIndvidualSpouse(person, currentSpouse = []) {
 
 }
 
+function findSiblings(dataSet) {
+
+    for (let i = 0; i < dataSet.length; i++) {
+        dataSet[i].siblings = findIndvidualSiblings(dataSet[i]);
+    }
+    return dataSet;
+}
+
+function findIndvidualSiblings(personWithSiblings, siblings = []) {
+
+    people.map(function(potientalSiblings) {
+        if (potientalSiblings.parents == people.parents) {
+            siblings.push(potientalSiblings)
+            return findIndvidualSiblings(potientalSiblings, siblings);
+        }
+    })
+    return personWithSiblings;
+}
 
 function filterByForm() {
     let filteredPeopleResult = searchByFirstName(people);
@@ -286,6 +304,7 @@ function filterByForm() {
     filteredPeopleResult = findDescendants(filteredPeopleResult);
     filteredPeopleResult = findParent(filteredPeopleResult);
     filteredPeopleResult = findCurrentSpouse(filteredPeopleResult);
+    filteredPeopleResult = findSiblings(filteredPeopleResult);
     buildTable(filteredPeopleResult);
     buildDescendantTable(filteredPeopleResult);
     //console.log(results)
@@ -372,8 +391,8 @@ function buildTable(filteredPeople) {
                 <td>${el.occupation}</td>
                 <td>${getParentsFromArray(el.parents)}</td>
                 <td>${getSpouseNameFromArray(el.currentSpouse)}</td>
-                <td>${getNamesFromArray(el.descendants)}</td>`
-
+                <td>${getNamesFromArray(el.descendants)}</td>
+                <td>${getSiblingsFromArray(el.siblings)} </td>`
     });
 }
 
@@ -402,10 +421,11 @@ function getSpouseNameFromArray(arrayOfPeople) {
     return result;
 }
 
-// function getSiblingsFromArray(arrayOfPeople) {
-//     let result = ""
-//     arrayOfPeople.map(function (el) {
-//         result += `${el.firstName} ${el.lastName}\n`
-//     })
-//     return result;
-// }
+
+function getSiblingsFromArray(arrayOfPeople) {
+    let result = ""
+    arrayOfPeople.map(function(el) {
+        result += `${el.firstName} ${el.lastName}\n`
+    })
+    return result;
+}
