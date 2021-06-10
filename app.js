@@ -270,6 +270,7 @@ function findIndvidualSpouse(person, currentSpouse = []) {
     return currentSpouse;
 
 }
+ 
 
 // function findSiblings(dataSet) {
 

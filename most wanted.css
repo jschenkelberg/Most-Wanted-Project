@@ -26,3 +26,7 @@ img {
 position:absolute;
 left: 500px;
 }
+
+p{
+    font-weight: bold;
+}

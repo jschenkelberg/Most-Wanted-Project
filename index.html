@@ -10,6 +10,7 @@
 
 <body>
     <img src="Most Wanted.png"></img>
+    
     <form id="nameForm">
         <label for="fname">First name:</label><br>
         <input type="text" id="fname" name="fname" placeholder="First Name" value=""><br>
@@ -34,8 +35,9 @@
 
         <label for="occupation">Occupation:</label><br>
         <input type="text" id="occupation" name="occupation" placeholder="occupation" value=""><br> 
-  
+        <input type="reset">
         <input type="button" onclick="filterByForm()" value="Search All">
+         
         <br>
         <p>To clear table, please refresh browser.</p>
     </form>
@@ -60,11 +62,6 @@
 
         </tbody>
     </table>
-    <!-- <input type="checkbox" onclick="fullTable()" id="fullTable" name="fullTable" value="fullTable">
-        <label for="fullTable">Show/Hide All People</label>
-        <div id="fullTable"></div><br> -->
-    <!-- <input type="checkbox" onclick="findDescendants()" id="descendents" name="descendents" value="descendents"><br>
-        <label for="descendents"> Show descendents</label><br> -->
     <script src="data.js"></script>
     <script src="app.js"></script>
 </body>
