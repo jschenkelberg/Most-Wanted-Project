@@ -2,11 +2,11 @@ table,
 td,
 thead
 {
-    border: 1px solid black;
-    table-layout: auto;
-    width: auto;
-    text-align: center;
-    column-width: 100px
+border: 1px solid black;
+table-layout: auto;
+width: auto;
+text-align: center;
+column-width: auto
 }
 th
 {
@@ -22,6 +22,7 @@ font-weight: bolder;
 color:white;
 font-size: 1rem;
 }
-
-  
- 
+img {
+position:absolute;
+left: 500px;
+}

@@ -271,24 +271,24 @@ function findIndvidualSpouse(person, currentSpouse = []) {
 
 }
 
-function findSiblings(dataSet) {
+// function findSiblings(dataSet) {
 
-    for (let i = 0; i < dataSet.length; i++) {
-        dataSet[i].siblings = findIndvidualSiblings(dataSet[i]);
-    }
-    return dataSet;
-}
+//     for (let i = 0; i < dataSet.length; i++) {
+//         dataSet[i].siblings = findIndvidualSiblings(dataSet[i]);
+//     }
+//     return dataSet;
+// }
 
-function findIndvidualSiblings(personWithSiblings, siblings = []) {
+// function findIndvidualSiblings(personWithSiblings, siblings = []) {
 
-    people.map(function(potientalSiblings) {
-        if (potientalSiblings.parents == people.parents) {
-            siblings.push(potientalSiblings)
-            return findIndvidualSiblings(potientalSiblings, siblings);
-        }
-    })
-    return personWithSiblings;
-}
+//     people.map(function(potentialSiblings) {
+//         if (potentialSiblings.parents === personWithSiblings) {
+//             siblings.push(siblings)
+//             return findIndvidualSiblings(potentialSiblings, siblings);
+//         }
+//     })
+//     return personWithSiblings;
+// }
 
 function filterByForm() {
     let filteredPeopleResult = searchByFirstName(people);
@@ -304,76 +304,13 @@ function filterByForm() {
     filteredPeopleResult = findDescendants(filteredPeopleResult);
     filteredPeopleResult = findParent(filteredPeopleResult);
     filteredPeopleResult = findCurrentSpouse(filteredPeopleResult);
-    filteredPeopleResult = findSiblings(filteredPeopleResult);
+    //filteredPeopleResult = findSiblings(filteredPeopleResult);
     buildTable(filteredPeopleResult);
     buildDescendantTable(filteredPeopleResult);
     //console.log(results)
     {
         return filteredPeopleResult;
     }
-}
-
-function buildDescendantTable(filteredPeopleResult) {
-    if (filteredPeopleResult.descendants > [4])
-        filteredPeopleResult.map(function(el) {
-            document.getElementById("descendantTable").innerHTML +=
-                `<tr>
-                <td>${el.descendants[0].firstName}</td>
-                <td>${el.descendants[0].lastName}</td>
-                <td>${el.descendants[1].firstName}</td>
-                <td>${el.descendants[1].lastName}</td>
-                <td>${el.descendants[2].firstName}</td>
-                <td>${el.descendants[2].lastName}</td>
-                <td>${el.descendants[3].firstName}</td>
-                <td>${el.descendants[3].lastName}</td>
-                <td>${el.descendants[4].firstName}</td>
-                <td>${el.descendants[4].lastName}</td>
-            </tr>`
-        })
-    if (filteredPeopleResult.descendants > [3])
-        filteredPeopleResult.map(function(el) {
-            document.getElementById("descendentTable").innerHTML +=
-                `<tr>
-                <td>${el.descendants[0].firstName}</td>
-                <td>${el.descendants[0].lastName}</td>
-                <td>${el.descendants[1].firstName}</td>
-                <td>${el.descendants[1].lastName}</td>
-                <td>${el.descendants[2].firstName}</td>
-                <td>${el.descendants[2].lastName}</td>
-                <td>${el.descendants[3].firstName}</td>
-                <td>${el.descendants[3].lastName}</td>
-            </tr>`
-        })
-    if (filteredPeopleResult.descendants > [2])
-        filteredPeopleResult.map(function(el) {
-            document.getElementById("descendentTable").innerHTML +=
-                `<tr>
-                <td>${el.descendants[0].firstName}</td>
-                <td>${el.descendants[0].lastName}</td>
-                <td>${el.descendants[1].firstName}</td>
-                <td>${el.descendants[1].lastName}</td>
-                <td>${el.descendants[2].firstName}</td>
-                <td>${el.descendants[2].lastName}</td>
-            </tr>`
-        })
-    if (filteredPeopleResult.descendants > [1])
-        filteredPeopleResult.map(function(el) {
-            document.getElementById("descendentTable").innerHTML +=
-                `<tr>
-                <td>${el.descendants[0].firstName}</td>
-                <td>${el.descendants[0].lastName}</td>
-                <td>${el.descendants[1].firstName}</td>
-                <td>${el.descendants[1].lastName}</td>
-            </tr>`
-        })
-    if (filteredPeopleResult.descendants > [0])
-        filteredPeopleResult.map(function(el) {
-            document.getElementById("descendentTable").innerHTML +=
-                `<tr>
-                <td>${el.descendants[0].firstName}</td>
-                <td>${el.descendants[0].lastName}</td>
-            </tr>`
-        })
 }
 
 function buildTable(filteredPeople) {
@@ -391,15 +328,15 @@ function buildTable(filteredPeople) {
                 <td>${el.occupation}</td>
                 <td>${getParentsFromArray(el.parents)}</td>
                 <td>${getSpouseNameFromArray(el.currentSpouse)}</td>
-                <td>${getNamesFromArray(el.descendants)}</td>
-                <td>${getSiblingsFromArray(el.siblings)} </td>`
+                <td>${getNamesFromArray(el.descendants)}</td>`
+            
     });
 }
 
 function getNamesFromArray(arrayOfPeople) {
     let result = ""
     arrayOfPeople.map(function(el) {
-        result += `${el.firstName} ${el.lastName}\n`
+        result += `(${el.firstName} ${el.lastName})  `
     })
     return result;
 }
@@ -407,25 +344,21 @@ function getNamesFromArray(arrayOfPeople) {
 function getParentsFromArray(arrayOfPeople) {
     let result = ""
     arrayOfPeople.map(function(el) {
-        result += `${el.firstName} ${el.lastName}\n`
+        result += `(${el.firstName} ${el.lastName})  `
     })
     return result;
 }
-
-
 function getSpouseNameFromArray(arrayOfPeople) {
     let result = ""
     arrayOfPeople.map(function(el) {
-        result += `${el.firstName} ${el.lastName}\n`
+        result += `(${el.firstName} ${el.lastName})  `
     })
     return result;
 }
-
-
-function getSiblingsFromArray(arrayOfPeople) {
-    let result = ""
-    arrayOfPeople.map(function(el) {
-        result += `${el.firstName} ${el.lastName}\n`
-    })
-    return result;
-}
+// function getSiblingsFromArray(arrayOfPeople) {
+//     let result = ""
+//     arrayOfPeople.map(function(el) {
+//         result += `${el.firstName} ${el.lastName}\n`
+//     })
+//     return result;
+// }

@@ -9,8 +9,7 @@
 </head>
 
 <body>
-    <!-- <script src="data.js"></script>
-  <script src="app.js"></script> -->
+    <img src="Most Wanted.png"></img>
     <form id="nameForm">
         <label for="fname">First name:</label><br>
         <input type="text" id="fname" name="fname" placeholder="First Name" value=""><br>
@@ -34,18 +33,11 @@
         <input type="text" id="eyeColor" name="eyeColor" placeholder="Eye Color" value=""><br>
 
         <label for="occupation">Occupation:</label><br>
-        <input type="text" id="occupation" name="occupation" placeholder="occupation" value=""><br>
-
-        <!-- <label for="parents">Parents:</label><br>
-        <input type="text" id="parents" name="parents" placeholder="parents" value=""><br>
-
-        <label for="currentSpouse">Current Spouse:</label><br>
-        <input type="text" id="currentSpouse" name="currentSpouse" placeholder="ID #" value=""><br><br> -->
-
-        <!-- <input type="checkbox" id="family" name="family" value="family"><br>
-        <label for="family"> Show family members</label><br> -->
+        <input type="text" id="occupation" name="occupation" placeholder="occupation" value=""><br> 
+  
         <input type="button" onclick="filterByForm()" value="Search All">
-        <input type="reset"><br>
+        <br>
+        <p>To clear table, please refresh browser.</p>
     </form>
 
 
@@ -63,7 +55,6 @@
             <th>Parents</th>
             <th>Current Spouse</th>
             <th>Descendants</th>
-            <th>Siblings</th>
         </thead>
         <tbody id="data">
 
